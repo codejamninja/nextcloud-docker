@@ -26,13 +26,15 @@ if (getenv("OBJECTSTORE_CLASS")) {
     $AUTOCONFIG["objectstore"] => array(
         "class" => "OC\\Files\\ObjectStore\\".getenv("OBJECTSTORE_CLASS"),
         "arguments" => array(
-            "bucket" => getenv("OBJECTSTORE_CLASS"),
+            "bucket" => getenv("OBJECTSTORE_BUCKET"),
             "key" => getenv("OBJECTSTORE_KEY"),
             "secret" => getenv("OBJECTSTORE_SECRET"),
             "use_ssl" => strtolower(getenv("OBJECTSTORE_USE_SSL")) == "true",
-            "use_path_style" => strtolower(getenv("OBJECTSTORE_USE_PATH_STYLE")) == "true",
         ),
     );
+    if (getenv("OBJECTSTORE_USE_PATH_STYLE")) {
+        $AUTOCONFIG["objectstore"]["arguments"]["use_path_style"] = strtolower(getenv("OBJECTSTORE_USE_PATH_STYLE")) == "true";
+    }
     if (getenv("OBJECTSTORE_HOSTNAME")) {
         $AUTOCONFIG["objectstore"]["arguments"]["hostname"] = getenv("OBJECTSTORE_HOSTNAME");
     }
