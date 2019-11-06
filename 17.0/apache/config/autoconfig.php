@@ -22,28 +22,6 @@ if (getenv('SQLITE_DATABASE')) {
     $autoconfig_enabled = true;
 }
 
-if (getenv("OBJECTSTORE_CLASS")) {
-    $AUTOCONFIG["objectstore"] => array(
-        "class" => "OC\\Files\\ObjectStore\\".getenv("OBJECTSTORE_CLASS"),
-        "arguments" => array(
-            "bucket" => getenv("OBJECTSTORE_BUCKET"),
-            "key" => getenv("OBJECTSTORE_KEY"),
-            "secret" => getenv("OBJECTSTORE_SECRET"),
-            "use_ssl" => strtolower(getenv("OBJECTSTORE_USE_SSL")) == "true",
-        ),
-    );
-    if (getenv("OBJECTSTORE_USE_PATH_STYLE")) {
-        $AUTOCONFIG["objectstore"]["arguments"]["use_path_style"] = strtolower(getenv("OBJECTSTORE_USE_PATH_STYLE")) == "true";
-    }
-    if (getenv("OBJECTSTORE_HOSTNAME")) {
-        $AUTOCONFIG["objectstore"]["arguments"]["hostname"] = getenv("OBJECTSTORE_HOSTNAME");
-    }
-    if (getenv("OBJECTSTORE_PORT")) {
-        $AUTOCONFIG["objectstore"]["arguments"]["port"] = getenv("OBJECTSTORE_PORT");
-    }
-    $autoconfig_enabled = true;
-}
-
 if ($autoconfig_enabled) {
     if (getenv('NEXTCLOUD_TABLE_PREFIX')) {
         $AUTOCONFIG["dbtableprefix"] = getenv('NEXTCLOUD_TABLE_PREFIX');
