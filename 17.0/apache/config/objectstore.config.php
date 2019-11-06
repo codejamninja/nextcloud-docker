@@ -12,6 +12,7 @@ if (getenv("OBJECTSTORE_CLASS")) {
                 'autocreate' => true,
             ),
         ),
+        'filelocking.enabled' => false,
     );
     if (getenv("OBJECTSTORE_USE_PATH_STYLE")) {
         $CONFIG["objectstore"]["arguments"]["use_path_style"] = strtolower(getenv("OBJECTSTORE_USE_PATH_STYLE")) == "true";
