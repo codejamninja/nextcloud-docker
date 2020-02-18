@@ -1,5 +1,5 @@
 # DO NOT EDIT: created by update.sh from Dockerfile-alpine.template
-FROM php:7.3-fpm-alpine3.10
+FROM php:7.3-fpm-alpine3.11
 
 # entrypoint.sh and cron.sh dependencies
 RUN set -ex; \
@@ -52,7 +52,7 @@ RUN set -ex; \
     \
 # pecl will claim success even if one install fails, so we need to perform each install separately
     pecl install APCu-5.1.18; \
-    pecl install memcached-3.1.4; \
+    pecl install memcached-3.1.5; \
     pecl install redis-4.3.0; \
     pecl install imagick-3.4.4; \
     \
@@ -94,7 +94,7 @@ RUN { \
 VOLUME /var/www/html
 
 
-ENV NEXTCLOUD_VERSION 17.0.1
+ENV NEXTCLOUD_VERSION 17.0.3
 
 RUN set -ex; \
     apk add --no-cache --virtual .fetch-deps \
